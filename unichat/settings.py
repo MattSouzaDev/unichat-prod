@@ -1,24 +1,21 @@
 import os
 from pathlib import Path
-from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-load_dotenv(BASE_DIR / ".env")
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY", "insecure-default-key")
+SECRET_KEY = os.environ.get("SECRET_KEY", "insecure-default-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "True").lower() == "true"
+DEBUG = os.environ.get("DEBUG", "True")
 
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(",")
 
 CSRF_TRUSTED_ORIGINS = [
     "https://unichat-prod.up.railway.app"
@@ -80,13 +77,11 @@ TEMPLATES = [
 # WSGI_APPLICATION = 'unichat.wsgi.application'
 ASGI_APPLICATION = "unichat.asgi.application"
 
-REDIS_URL = os.getenv("REDIS_URL", "redis://127.0.0.1:6379")
-
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [REDIS_URL], #for railway 
+            "hosts": [os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379')], #for railway 
             # "hosts": [(os.getenv("REDIS_HOST"), 6379)],
         }
     }
