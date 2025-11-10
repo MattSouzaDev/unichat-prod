@@ -21,7 +21,7 @@ DEBUG = os.environ.get("DEBUG", "True").lower() == "true"
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
 
 CSRF_TRUSTED_ORIGINS = [
-    "unichat-prod.up.railway.app"
+    "https://unichat-prod.up.railway.app"
 ]
 
 
