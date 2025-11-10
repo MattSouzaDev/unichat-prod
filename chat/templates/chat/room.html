@@ -48,17 +48,17 @@
 </div>
 
 <script>
-    let m_url = "unichat-prod.up.railway.app"
+    // let m_url = "unichat-prod.up.railway.app"
 
     const roomId = JSON.parse(document.getElementById('room-id').textContent);
 
-    const chatSocket = new WebSocket(
-        'wss://' + m_url + '/ws/chat/' + roomId + '/'
-    );
-
     // const chatSocket = new WebSocket(
-    //     'ws://' + window.location.host + '/ws/chat/' + roomId + '/'
+    //     'wss://' + m_url + '/ws/chat/' + roomId + '/'
     // );
+
+    const chatSocket = new WebSocket(
+        'ws://' + window.location.host + '/ws/chat/' + roomId + '/'
+    );
 
     chatSocket.onmessage = function (e) {
         const data = JSON.parse(e.data);
