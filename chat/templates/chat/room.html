@@ -53,7 +53,7 @@
     const roomId = JSON.parse(document.getElementById('room-id').textContent);
 
     const chatSocket = new WebSocket(
-        'wss://' + `${m_url} + '/ws/chat/` + roomId + '/'
+        'wss://' + m_url + '/ws/chat/' + roomId + '/'
     );
 
     // const chatSocket = new WebSocket(
